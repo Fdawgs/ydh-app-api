@@ -22,13 +22,13 @@ describe.skip("mssql plugin", () => {
 			method: "GET",
 			url: "/",
 			handler: async () => {
-				const fakeClient = await server.mssql.connect();
+				const fakeClient = await server.db.connect();
 				return fakeClient.query(query);
 			},
 		});
 
 		await server.ready();
-		server.mssql.connect = jest.fn();
+		server.db.connect = jest.fn();
 	});
 
 	afterAll(async () => {
@@ -39,7 +39,7 @@ describe.skip("mssql plugin", () => {
 		const result = faker.lorem.word();
 
 		client.query.mockResolvedValue(result);
-		server.mssql.connect.mockResolvedValue(client);
+		server.db.connect.mockResolvedValue(client);
 
 		const response = await server.inject({
 			method: "GET",

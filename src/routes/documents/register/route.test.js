@@ -65,7 +65,7 @@ describe("Register Route", () => {
 				rowsAffected: [1, 1],
 			});
 
-			server.mssql = {
+			server.db = {
 				query: mockQueryFn,
 			};
 
@@ -119,7 +119,7 @@ describe("Register Route", () => {
 				rowsAffected: [1, 1],
 			});
 
-			server.mssql = {
+			server.db = {
 				query: mockQueryFn,
 			};
 
@@ -179,7 +179,7 @@ describe("Register Route", () => {
 				rowsAffected: [1, 1],
 			});
 
-			server.mssql = {
+			server.db = {
 				query: mockQueryFn,
 			};
 
@@ -233,7 +233,7 @@ describe("Register Route", () => {
 				rowsAffected: [1, 1],
 			});
 
-			server.mssql = {
+			server.db = {
 				query: mockQueryFn,
 			};
 
@@ -254,7 +254,7 @@ describe("Register Route", () => {
 				.fn()
 				.mockRejectedValue(Error("Failed to connect to DB"));
 
-			server.mssql = {
+			server.db = {
 				query: mockQueryFn,
 			};
 

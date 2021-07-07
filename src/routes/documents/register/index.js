@@ -59,7 +59,7 @@ async function route(server, options) {
 
 				const whereClausePredicates = whereArray.join(" AND ");
 
-				const { recordsets } = await server.mssql.query(
+				const { recordsets } = await server.db.query(
 					registerSelect({
 						whereClausePredicates,
 						documentRegisterTable:

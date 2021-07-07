@@ -36,7 +36,7 @@ describe("Receipt Route", () => {
 				rowsAffected: [1],
 			});
 
-			server.mssql = {
+			server.db = {
 				query: mockQueryFn,
 			};
 
@@ -57,7 +57,7 @@ describe("Receipt Route", () => {
 				rowsAffected: [0],
 			});
 
-			server.mssql = {
+			server.db = {
 				query: mockQueryFn,
 			};
 
@@ -78,7 +78,7 @@ describe("Receipt Route", () => {
 				.fn()
 				.mockRejectedValue(Error("Failed to connect to DB"));
 
-			server.mssql = {
+			server.db = {
 				query: mockQueryFn,
 			};
 
@@ -117,7 +117,7 @@ describe("Receipt Route", () => {
 				rowsAffected: [1],
 			});
 
-			server.mssql = {
+			server.db = {
 				query: mockQueryFn,
 			};
 
@@ -139,7 +139,7 @@ describe("Receipt Route", () => {
 				rowsAffected: [0],
 			});
 
-			server.mssql = {
+			server.db = {
 				query: mockQueryFn,
 			};
 

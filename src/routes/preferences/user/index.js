@@ -29,7 +29,7 @@ async function route(server, options) {
 		schema: userGetSchema,
 		async handler(req, res) {
 			try {
-				const { recordsets } = await server.mssql.query(
+				const { recordsets } = await server.db.query(
 					userSelect({
 						patientId: req.params.id,
 						patientPreferencesTable:
@@ -117,7 +117,7 @@ async function route(server, options) {
 			try {
 				const results = await Promise.all(
 					clean(req.body.preferences).map(async (preference) => {
-						const { rowsAffected } = await server.mssql.query(
+						const { rowsAffected } = await server.db.query(
 							userInsert({
 								patientId: req.params.id,
 								preferenceTypeId: preference.id,

@@ -26,7 +26,7 @@ async function route(server, options) {
 		schema: receiptPutSchema,
 		async handler(req, res) {
 			try {
-				const { rowsAffected } = await server.mssql.query(
+				const { rowsAffected } = await server.db.query(
 					receiptInsert({
 						id: req.params.id,
 						patientId: req.query.patientId,
@@ -58,7 +58,7 @@ async function route(server, options) {
 		schema: receiptDeleteSchema,
 		async handler(req, res) {
 			try {
-				const { rowsAffected } = await server.mssql.query(
+				const { rowsAffected } = await server.db.query(
 					receiptDelete({
 						id: req.params.id,
 						patientId: req.query.patientId,

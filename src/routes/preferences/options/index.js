@@ -29,7 +29,7 @@ async function route(server, options) {
 		schema: optionsGetSchema,
 		async handler(req, res) {
 			try {
-				const { recordsets } = await server.mssql.query(
+				const { recordsets } = await server.db.query(
 					optionsSelect({
 						patientPreferencesTypeTable:
 							options.database.tables.patientPrefTypeLookup,

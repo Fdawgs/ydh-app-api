@@ -35,7 +35,7 @@ const sql = require("mssql");
 async function plugin(server, options) {
 	const mssql = await sql.connect(options.database.connection);
 
-	server.decorate("mssql", mssql);
+	server.decorate("db", mssql);
 	server.addHook("onClose", async (instance, done) => mssql.close(done));
 }
 

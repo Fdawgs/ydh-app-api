@@ -29,7 +29,7 @@ describe.skip("Server deployment", () => {
 	});
 
 	test("Should return documents from register", async () => {
-		server.mssql = {
+		server.db = {
 			query: jest.fn(),
 		};
 
@@ -62,7 +62,7 @@ describe.skip("Server deployment", () => {
 	});
 
 	test("Should return HTTP status code 406 if content-type in `Accept` request header unsupported", async () => {
-		server.mssql = {
+		server.db = {
 			query: jest.fn(),
 		};
 

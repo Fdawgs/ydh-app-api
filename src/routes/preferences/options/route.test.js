@@ -46,7 +46,7 @@ describe("Options Route", () => {
 				],
 			});
 
-			server.mssql = {
+			server.db = {
 				query: mockQueryFn,
 			};
 
@@ -64,7 +64,7 @@ describe("Options Route", () => {
 				recordsets: [[], []],
 			});
 
-			server.mssql = {
+			server.db = {
 				query: mockQueryFn,
 			};
 
@@ -82,7 +82,7 @@ describe("Options Route", () => {
 				.fn()
 				.mockRejectedValue(Error("Failed to connect to DB"));
 
-			server.mssql = {
+			server.db = {
 				query: mockQueryFn,
 			};
 
