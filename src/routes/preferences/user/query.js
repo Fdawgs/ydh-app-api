@@ -1,3 +1,4 @@
+// PostgreSQL lowercases columns and alias if they are not double-quoted
 const userInsert = ({
 	patientId,
 	preferenceTypeId,
@@ -24,21 +25,21 @@ const userSelect = ({
 	patientPreferencesTypeTable,
 	patientPreferencesValueTable,
 }) => `SELECT pat.patientId AS id,
-pat.created AS metaCreated,
-pat.lastUpdated AS metaLastUpdated,
-pat.preferenceValueId,
-pat.preferenceTypeId,
-prefType.preferenceType AS preferenceTypeDisplay,
-pat.preferencePriority AS preferenceTypePriority
+pat.created AS "metaCreated",
+pat.lastUpdated AS "metaLastUpdated",
+pat.preferenceValueId AS "preferenceValueId",
+pat.preferenceTypeId AS "preferenceTypeId",
+prefType.preferenceType AS "preferenceTypeDisplay",
+pat.preferencePriority AS "preferenceTypePriority"
 FROM ${patientPreferencesTable} pat
 LEFT JOIN ${patientPreferencesTypeTable} prefType
 ON pat.preferenceTypeId = prefType.preferenceTypeId
 WHERE patientId = '${patientId}';
 
-SELECT prefType.preferenceTypeId,
-prefType.preferenceType AS preferenceTypeDisplay,
-prefVal.preferenceValue AS preferenceOptionDisplay,
-prefVal.preferenceValueId AS preferenceOptionValue
+SELECT prefType.preferenceTypeId AS "preferenceTypeId",
+prefType.preferenceType AS "preferenceTypeDisplay",
+prefVal.preferenceValue AS "preferenceOptionDisplay",
+prefVal.preferenceValueId AS "preferenceOptionValue"
 FROM ${patientPreferencesTypeTable} prefType
 CROSS JOIN ${patientPreferencesValueTable} prefVal;
 `;

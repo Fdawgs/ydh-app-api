@@ -58,7 +58,7 @@ async function route(server, options) {
 		schema: receiptDeleteSchema,
 		async handler(req, res) {
 			try {
-				const { rowsAffected } = await server.db.query(
+				const results = await server.db.query(
 					receiptDelete({
 						id: req.params.id,
 						patientId: req.query.patientId,
@@ -66,7 +66,18 @@ async function route(server, options) {
 					})
 				);
 
-				if (rowsAffected[0] > 0) {
+				let count;
+				switch (options.database.client) {
+					case "mssql":
+					default:
+						count = results.rowsAffected[0];
+						break;
+					case "postgresql":
+						count = results.rowCount;
+						break;
+				}
+
+				if (count > 0) {
 					res.status(204);
 				} else {
 					res.send(

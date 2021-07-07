@@ -59,7 +59,7 @@ async function route(server, options) {
 
 				const whereClausePredicates = whereArray.join(" AND ");
 
-				const { recordsets } = await server.db.query(
+				const results = await server.db.query(
 					registerSelect({
 						whereClausePredicates,
 						documentRegisterTable:
@@ -69,10 +69,23 @@ async function route(server, options) {
 					})
 				);
 
-				const count = recordsets[0][0].total;
+				let count;
+				let data;
+
+				switch (options.database.client) {
+					case "mssql":
+					default:
+						count = results.recordsets[0][0].total;
+						data = clean(results.recordsets[1]);
+						break;
+					case "postgresql":
+						count = results[0].rows[0].total;
+						data = clean(results[1].rows);
+						break;
+				}
 
 				const response = {
-					data: [],
+					data,
 					meta: {
 						pagination: {
 							total: count,
@@ -82,8 +95,6 @@ async function route(server, options) {
 						},
 					},
 				};
-
-				response.data = clean(recordsets[1]);
 				res.send(response);
 			} catch (err) {
 				server.log.error(err);

@@ -29,7 +29,7 @@ async function route(server, options) {
 		schema: userGetSchema,
 		async handler(req, res) {
 			try {
-				const { recordsets } = await server.db.query(
+				const results = await server.db.query(
 					userSelect({
 						patientId: req.params.id,
 						patientPreferencesTable:
@@ -41,8 +41,20 @@ async function route(server, options) {
 					})
 				);
 
-				const patientPreferences = recordsets[0];
-				const patientPreferencesValues = recordsets[1];
+				let patientPreferences;
+				let patientPreferencesValues;
+
+				switch (options.database.client) {
+					case "mssql":
+					default:
+						patientPreferences = results.recordsets[0];
+						patientPreferencesValues = results.recordsets[1];
+						break;
+					case "postgresql":
+						patientPreferences = results[0].rows;
+						patientPreferencesValues = results[1].rows;
+						break;
+				}
 
 				if (patientPreferences && patientPreferences.length !== 0) {
 					// Build patient object
