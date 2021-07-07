@@ -83,7 +83,7 @@ async function plugin(server, config) {
 					}
 				})
 				.register(bearer, { keys: config.authKeys })
-				.register(mssql, config)
+				.register(mssql, config.database)
 				// Import and register service routes
 				.register(autoLoad, {
 					dir: path.join(__dirname, "routes"),
