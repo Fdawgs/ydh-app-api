@@ -13,7 +13,7 @@ const flocOff = require("fastify-floc-off");
 const rateLimit = require("fastify-rate-limit");
 const swagger = require("fastify-swagger");
 const underPressure = require("under-pressure");
-const mssql = require("./plugins/mssql");
+const db = require("./plugins/db");
 
 // Import healthcheck route
 const healthCheck = require("./routes/healthcheck");
@@ -83,7 +83,7 @@ async function plugin(server, config) {
 					}
 				})
 				.register(bearer, { keys: config.authKeys })
-				.register(mssql, config.database)
+				.register(db, config.database)
 				// Import and register service routes
 				.register(autoLoad, {
 					dir: path.join(__dirname, "routes"),

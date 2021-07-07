@@ -4,7 +4,7 @@ const plugin = require(".");
 const getConfig = require("../../config");
 
 // TODO: look at standing up test SQL Server instance with Docker and disable skip for this
-describe.skip("mssql plugin", () => {
+describe.skip("db plugin", () => {
 	let options;
 	let server;
 
@@ -35,7 +35,7 @@ describe.skip("mssql plugin", () => {
 		await server.close();
 	});
 
-	test("Should instrument request with mssql plugin", async () => {
+	test("Should instrument request with db plugin", async () => {
 		const result = faker.lorem.word();
 
 		client.query.mockResolvedValue(result);
