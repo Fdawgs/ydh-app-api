@@ -73,5 +73,5 @@ CREATE TABLE register.documents
     FullPath NVARCHAR(555) NULL,
     BaseURL NVARCHAR(50) NULL,
     BaseSite NVARCHAR(50) NULL
-)
+);
 GO 

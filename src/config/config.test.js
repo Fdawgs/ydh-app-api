@@ -46,6 +46,7 @@ describe("Configuration", () => {
 		const LOG_ROTATION_FILENAME = "./test_resources/test_log";
 		const AUTH_BEARER_TOKEN_ARRAY =
 			'[{"service": "test", "value": "testtoken"}]';
+		const DB_CLIENT = "mssql";
 		const DB_CONNECTION_STRING =
 			"Server=localhost,1433;Database=database;User Id=username;Password=password;Encrypt=true";
 		const DB_DOCUMENT_REGISTER_TABLE = "YDHAPPDOC.dbo.SPINDEX";
@@ -71,6 +72,7 @@ describe("Configuration", () => {
 			LOG_LEVEL,
 			LOG_ROTATION_FILENAME,
 			AUTH_BEARER_TOKEN_ARRAY,
+			DB_CLIENT,
 			DB_CONNECTION_STRING,
 			DB_DOCUMENT_REGISTER_TABLE,
 			DB_PATIENT_PREFERENCES_TABLE,
@@ -130,6 +132,7 @@ describe("Configuration", () => {
 		});
 
 		expect(config.database).toEqual({
+			client: DB_CLIENT,
 			connection: DB_CONNECTION_STRING,
 			tables: {
 				documentRegister: DB_DOCUMENT_REGISTER_TABLE,
@@ -160,6 +163,7 @@ describe("Configuration", () => {
 		const LOG_ROTATION_FILENAME = "./test_resources/test_log";
 		const AUTH_BEARER_TOKEN_ARRAY =
 			'[{"service": "test", "value": "testtoken"}]';
+		const DB_CLIENT = "";
 		const DB_CONNECTION_STRING =
 			"Server=localhost,1433;Database=database;User Id=username;Password=password;Encrypt=true";
 		const DB_DOCUMENT_REGISTER_TABLE = "YDHAPPDOC.dbo.SPINDEX";
@@ -185,6 +189,7 @@ describe("Configuration", () => {
 			LOG_LEVEL,
 			LOG_ROTATION_FILENAME,
 			AUTH_BEARER_TOKEN_ARRAY,
+			DB_CLIENT,
 			DB_CONNECTION_STRING,
 			DB_DOCUMENT_REGISTER_TABLE,
 			DB_PATIENT_PREFERENCES_TABLE,
@@ -244,6 +249,7 @@ describe("Configuration", () => {
 		});
 
 		expect(config.database).toEqual({
+			client: "mssql",
 			connection: DB_CONNECTION_STRING,
 			tables: {
 				documentRegister: DB_DOCUMENT_REGISTER_TABLE,

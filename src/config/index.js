@@ -106,6 +106,13 @@ async function getConfig() {
 			.prop("LOG_ROTATION_MAX_LOGS", S.anyOf([S.string(), S.null()]))
 			.prop("LOG_ROTATION_MAX_SIZE", S.anyOf([S.string(), S.null()]))
 			.prop("AUTH_BEARER_TOKEN_ARRAY", S.anyOf([S.string(), S.null()]))
+			.prop(
+				"DB_CLIENT",
+				S.anyOf([
+					S.string().enum(["mssql", "postgresql"]).default("mssql"),
+					S.null(),
+				])
+			)
 			.prop("DB_CONNECTION_STRING", S.string())
 			.prop("DB_DOCUMENT_REGISTER_TABLE", S.string())
 			.prop("DB_PATIENT_PREFERENCES_TABLE", S.string())
@@ -215,6 +222,7 @@ async function getConfig() {
 			},
 		},
 		database: {
+			client: env.DB_CLIENT || "mssql",
 			connection: env.DB_CONNECTION_STRING,
 			tables: {
 				documentRegister: env.DB_DOCUMENT_REGISTER_TABLE,
