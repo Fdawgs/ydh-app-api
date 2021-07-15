@@ -1,6 +1,6 @@
 {
   "name": "ydh-myydh-crud-api",
-  "version": "3.2.5",
+  "version": "3.2.6",
   "description": "Yeovil District Hospital NHSFT's RESTful CRUD API for the MyYDH app",
   "main": "src/app.js",
   "repository": "git+https://github.com/Fdawgs/ydh-myydh-crud-api.git",
